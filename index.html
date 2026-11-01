@@ -1,359 +1,1075 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kit Caneta 3D Nic 3D + 100m Filamento + Caderno | Especial Dia das Crianças</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-subtle': 'bounce 2s infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .pulsing-btn {
-            animation: pulseGlow 1.5s infinite;
-        }
-        @keyframes pulseGlow {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.8);
-            }
-            70% {
-                transform: scale(1.03);
-                box-shadow: 0 0 0 15px rgba(22, 163, 74, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
-            }
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        .blinking-badge {
-            animation: blink 1s infinite;
-        }
-    </style>
-	<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1354256436578095');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1354256436578095&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-pink-500 selection:text-white">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promoção de Natal - Árvore Completa + Kit Enfeites | Queima de Estoque</title>
+  
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Icones FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- Top Announcement Banner -->
-    <div class="bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white text-center py-2.5 px-4 text-sm font-semibold shadow-md flex items-center justify-center gap-2">
-        <i class="fa-solid fa-gift animate-bounce"></i>
-        <span>ESPECIAL DIA DAS CRIANÇAS: FRETE GRÁTIS PARA TODA A REGIÃO POR TEMPO LIMITADO!</span>
+  <style>
+    :root {
+      --primary-red: #d32f2f;
+      --dark-red: #9a0007;
+      --gold: #d4af37;
+      --dark-gold: #aa8612;
+      --green: #1b5e20;
+      --light-green: #e8f5e9;
+      --text-dark: #212121;
+      --text-muted: #666666;
+      --bg-light: #f8f9fa;
+      --white: #ffffff;
+      --pix-color: #32bcad;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f6;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Efeito de Neve em Canvas */
+    #snow-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Top Bar de Frete Grátis e Região */
+    .location-bar {
+      background: linear-gradient(90deg, #1b5e20 0%, #2e7d32 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .location-bar i {
+      color: var(--gold);
+      margin-right: 6px;
+    }
+
+    .location-bar span.highlight {
+      color: #ffee58;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+
+    /* Timer de Escassez */
+    .timer-banner {
+      background-color: var(--dark-red);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer-badge {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold);
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* Hero Layout */
+    .hero-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 30px;
+      padding: 30px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+      }
+    }
+
+    /* Seção de Galeria de Imagens (Apenas 3 Imagens) */
+    .gallery-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #f0f0f0;
+      background: #fafafa;
+    }
+
+    .main-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .badge-stock {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: var(--primary-red);
+      color: var(--white);
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 20px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+    }
+
+    /* 3 Miniaturas Rápidas */
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .thumb-item {
+      height: 90px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #e0e0e0;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-item:hover, .thumb-item.active {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .thumb-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: var(--white);
+      font-size: 0.65rem;
+      text-align: center;
+      padding: 3px 2px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Detalhes do Produto / Seleção */
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tag-oferta {
+      display: inline-block;
+      color: var(--primary-red);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    h1.product-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+    }
+
+    .stars {
+      color: #ffb300;
+    }
+
+    .rating-text {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Seleção de Tamanhos */
+    .selector-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .option-card {
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      background: #fafafa;
+    }
+
+    .option-card:hover {
+      border-color: var(--gold);
+      background: #fffdf5;
+    }
+
+    .option-card.active {
+      border-color: var(--green);
+      background-color: var(--light-green);
+      box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
+    }
+
+    .option-card input[type="radio"] {
+      accent-color: var(--green);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .option-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .option-size {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+    }
+
+    .option-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .option-price {
+      text-align: right;
+    }
+
+    .price-value {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -10px;
+      right: 15px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+    }
+
+    /* Detalhe do Kit Selecionado */
+    .kit-preview-box {
+      background: #f8f9fa;
+      border-left: 4px solid var(--gold);
+      padding: 12px 15px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+    }
+
+    .kit-preview-title {
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--text-dark);
+    }
+
+    .kit-preview-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      color: var(--text-muted);
+    }
+
+    .kit-preview-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kit-preview-list li i {
+      color: var(--green);
+      font-size: 0.75rem;
+    }
+
+    /* Exclusivo PIX Badge */
+    .pix-exclusive-badge {
+      background-color: rgba(50, 188, 173, 0.1);
+      border: 1.5px dashed var(--pix-color);
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .pix-icon {
+      background-color: var(--pix-color);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .pix-text strong {
+      color: #0d6efd;
+      color: var(--text-dark);
+      font-size: 0.85rem;
+      display: block;
+    }
+
+    .pix-text span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Botão de Compra CTA */
+    .cta-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(180deg, #2e7d32 0%, #1b5e20 100%);
+      color: var(--white);
+      text-decoration: none;
+      padding: 18px 20px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      border-radius: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(27, 94, 32, 0.5);
+      background: linear-gradient(180deg, #388e3c 0%, #2e7d32 100%);
+    }
+
+    .cta-subtext {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Tabela de Enfeites por Kit */
+    .section-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 40px 0 20px 0;
+      color: var(--text-dark);
+    }
+
+    .section-title span {
+      color: var(--primary-red);
+    }
+
+    .kits-table-container {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      overflow-x: auto;
+    }
+
+    .kits-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .kits-table th, .kits-table td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .kits-table th {
+      background-color: #fafafa;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .kits-table th.highlight-col {
+      background-color: var(--light-green);
+      color: var(--green);
+    }
+
+    .kits-table td.feature-name {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Garantias & FAQ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .benefit-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    .benefit-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Pop-up de Compras Ao Vivo */
+    .live-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 9000;
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-left: 4px solid var(--green);
+      max-width: 320px;
+    }
+
+    .live-popup.show {
+      transform: translateY(0);
+    }
+
+    .live-popup-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .live-popup-info {
+      font-size: 0.75rem;
+    }
+
+    .live-popup-info strong {
+      color: var(--text-dark);
+      display: block;
+    }
+
+    .live-popup-info span {
+      color: var(--text-muted);
+    }
+
+    .live-popup-time {
+      font-size: 0.65rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 40px;
+      border-top: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas de Neve -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- Barra de Localização com Frete Grátis -->
+  <div class="location-bar">
+    <i class="fa-solid fa-truck-fast"></i>
+    <span id="location-text">FRETE GRÁTIS GARANTIDO PARA TODO O BRASIL</span>
+  </div>
+
+  <!-- Cronômetro de Oferta -->
+  <div class="timer-banner">
+    <span><i class="fa-solid fa-fire"></i> QUEIMA DE ESTOQUE DE NATAL - ÚLTIMAS UNIDADES!</span>
+    <div style="display:flex; align-items:center; gap:5px;">
+      <span>A oferta expira em:</span>
+      <div class="timer-badge" id="timer">11:43</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Card Principal de Venda -->
+    <div class="hero-card">
+      
+      <!-- Lado Esquerdo: Galeria (3 Imagens Focadas) -->
+      <div class="gallery-container">
+        <div class="main-image-wrapper">
+          <span class="badge-stock">Restam 7 Unidades</span>
+          <img id="main-img" src="https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=900&q=80" alt="Árvore de Natal Completa Decorada" />
+        </div>
+
+        <!-- 3 Miniaturas -->
+        <div class="thumbnails-grid">
+          <div class="thumb-item active" onclick="changeImage('https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=900&q=80', this)">
+            <img src="https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=300&q=80" alt="Árvore de Natal Completa" />
+            <div class="thumb-label">Árvore Completa</div>
+          </div>
+          <div class="thumb-item" onclick="changeImage('https://images.unsplash.com/photo-1512474932049-782abb8e4952?auto=format&fit=crop&w=900&q=80', this)">
+            <img src="https://images.unsplash.com/photo-1512474932049-782abb8e4952?auto=format&fit=crop&w=300&q=80" alt="Enfeites Natalinos" />
+            <div class="thumb-label">Enfeites Natalinos</div>
+          </div>
+          <div class="thumb-item" onclick="changeImage('https://images.unsplash.com/photo-1576692155368-95184268f8d3?auto=format&fit=crop&w=900&q=80', this)">
+            <img src="https://images.unsplash.com/photo-1576692155368-95184268f8d3?auto=format&fit=crop&w=300&q=80" alt="Pisca-Pisca Completo" />
+            <div class="thumb-label">Pisca-Pisca Completo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Seleção e Compra -->
+      <div class="product-details">
+        <span class="tag-oferta"><i class="fa-solid fa-bolt"></i> Promoção Especial de Fim de Ano</span>
+        <h1 class="product-title">Kit Árvore de Natal Completa + Enfeites + Pisca-Pisca LED</h1>
+        
+        <div class="rating-container">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <span class="rating-text">4.9/5.0 (428 avaliações de clientes)</span>
+        </div>
+
+        <div class="selector-title">
+          <span>Escolha o Tamanho Ideal:</span>
+          <span style="font-size:0.75rem; color:var(--primary-red); font-weight:600;">Frete Grátis Incluso</span>
+        </div>
+
+        <!-- Opções de Tamanho -->
+        <div class="options-grid">
+          
+          <!-- Opção 60 cm -->
+          <div class="option-card" id="card-60" onclick="selectOption('60')">
+            <input type="radio" name="tree_size" id="size-60" value="60" />
+            <div class="option-info">
+              <div>
+                <div class="option-size">60 cm</div>
+                <div class="option-desc">Ideal para mesas e balcões (Kit Compacto)</div>
+              </div>
+            </div>
+            <div class="option-price">
+              <div class="price-value">R$ 67,00</div>
+            </div>
+          </div>
+
+          <!-- Opção 1,50 m (Mais Vendida) -->
+          <div class="option-card active" id="card-150" onclick="selectOption('150')">
+            <span class="popular-tag">MAIS VENDIDA</span>
+            <input type="radio" name="tree_size" id="size-150" value="150" checked />
+            <div class="option-info">
+              <div>
+                <div class="option-size">1,50 m</div>
+                <div class="option-desc">Perfeita para salas de estar (Kit Completo)</div>
+              </div>
+            </div>
+            <div class="option-price">
+              <div class="price-value">R$ 87,00</div>
+            </div>
+          </div>
+
+          <!-- Opção 1,80 m -->
+          <div class="option-card" id="card-180" onclick="selectOption('180')">
+            <input type="radio" name="tree_size" id="size-180" value="180" />
+            <div class="option-info">
+              <div>
+                <div class="option-size">1,80 m</div>
+                <div class="option-desc">Imponente e super volumosa (Kit Luxo)</div>
+              </div>
+            </div>
+            <div class="option-price">
+              <div class="price-value">R$ 97,00</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- O que vem no Kit Selecionado -->
+        <div class="kit-preview-box">
+          <div class="kit-preview-title" id="kit-title">O que está incluso no Kit 1,50 m:</div>
+          <ul class="kit-preview-list" id="kit-list">
+            <li><i class="fa-solid fa-check"></i> Árvore 1,50m (300 galhos)</li>
+            <li><i class="fa-solid fa-check"></i> 1 Ponteira Estrela Dourada</li>
+            <li><i class="fa-solid fa-check"></i> 24 Bolas Decoradas (6cm)</li>
+            <li><i class="fa-solid fa-check"></i> 1 Pisca-Pisca 100 LEDs (8m)</li>
+            <li><i class="fa-solid fa-check"></i> 12 Laços Vermelhos Aveludados</li>
+            <li><i class="fa-solid fa-check"></i> Base Tripé Reforçada</li>
+          </ul>
+        </div>
+
+        <!-- Aviso Exclusivo PIX -->
+        <div class="pix-exclusive-badge">
+          <div class="pix-icon">
+            <i class="fa-solid fa-pix"></i>
+          </div>
+          <div class="pix-text">
+            <strong>PAGAMENTO EXCLUSIVO VIA PIX</strong>
+            <span>Aprovação instantânea e envio prioritário para a sua região.</span>
+          </div>
+        </div>
+
+        <!-- Botão Dinâmico CTA -->
+        <a id="checkout-link" href="https://megapromo17.pay.yampi.com.br/r/BIT7JNYD3N" class="cta-btn">
+          <i class="fa-solid fa-lock"></i> COMPRAR AGORA VIA PIX
+        </a>
+
+        <div class="cta-subtext">
+          <span><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i> Compra 100% Segura</span>
+          <span><i class="fa-solid fa-truck-ramp-box" style="color:var(--green)"></i> Despacho Imediato</span>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Header / Nav -->
-    <header class="bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 shadow-lg border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="bg-pink-500/20 text-pink-400 border border-pink-500/30 font-extrabold text-xl px-3 py-1 rounded-xl shadow-inner">
-                    <i class="fa-solid fa-pen-nib"></i> Nic 3D
-                </span>
-                <span class="text-xs font-bold uppercase tracking-wider text-purple-400 hidden sm:inline-block bg-purple-950 px-2.5 py-1 rounded border border-purple-800/50">Edição Especial</span>
-            </div>
-            <div>
-                <a href="https://megapromo17.pay.yampi.com.br/r/EZSSTAVOF3" class="bg-green-600 hover:bg-green-500 text-white text-xs sm:text-sm font-bold py-2 px-4 rounded-full shadow transition transform hover:scale-105">
-                    Garantir Oferta
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- Tabela Comparativa de Kits -->
+    <h2 class="section-title">Confira todos os itens <span>inclusos em cada Kit</span></h2>
+    <div class="kits-table-container">
+      <table class="kits-table">
+        <tr>
+            <th style="text-align:left;">Itens Inclusos</th>
+            <th>Kit 60 cm (R$ 67)</th>
+            <th class="highlight-col">Kit 1,50 m (R$ 87)</th>
+            <th>Kit 1,80 m (R$ 97)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Árvore de Natal Pinheiro</td>
+            <td>60 cm (Compacta)</td>
+            <td><strong>1,50 m (300 Galhos)</strong></td>
+            <td>1,80 m (500 Galhos)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Bolas Decorativas Finas</td>
+            <td>12 Unidades (4cm)</td>
+            <td><strong>24 Unidades (6cm)</strong></td>
+            <td>36 Unidades (6cm)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Pisca-Pisca LED Completo</td>
+            <td>50 LEDs (Warm)</td>
+            <td><strong>100 LEDs (8 Metros)</strong></td>
+            <td>100 LEDs (10 Metros)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Laços de Veludo Vermelho</td>
+            <td>6 Unidades</td>
+            <td><strong>12 Unidades</strong></td>
+            <td>18 Unidades</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Ponteira Estrela Dourada</td>
+            <td>1 Unidade (Pequena)</td>
+            <td><strong>1 Unidade (Grande)</strong></td>
+            <td>1 Unidade (Luxo Dourada)</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Base de Sustentação</td>
+            <td>Base Plástica</td>
+            <td><strong>Tripé de Metal Reforçado</strong></td>
+            <td>Tripé de Metal Reforçado</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Frete Grátis Brasil</td>
+            <td><i class="fa-solid fa-check" style="color:var(--green)"></i> Sim</td>
+            <td><i class="fa-solid fa-check" style="color:var(--green)"></i> <strong>Sim</strong></td>
+            <td><i class="fa-solid fa-check" style="color:var(--green)"></i> Sim</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="py-12 md:py-20 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
-            
-            <!-- Left Column: Product info -->
-            <div class="space-y-6">
-                <!-- Urgency Badge: Últimas Unidades -->
-                <div class="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/40 text-red-400 px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
-                    <span class="w-2 h-2 rounded-full bg-red-500 blinking-badge inline-block"></span>
-                    🔥 Atenção: Últimas Unidades em Estoque!
-                </div>
-                
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                    Kit Caneta 3D Nic 3D + Filamento de 100m + Caderno
-                </h1>
-                
-                <p class="text-slate-300 text-base sm:text-lg">
-                    Transforme a imaginação dos pequenos em realidade tridimensional! Kit completo com 100 metros de filamento, caderno de moldes exclusivo, design ergonômico e máxima segurança.
-                </p>
+    <!-- Benefícios e Garantia -->
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <i class="fa-solid fa-truck-fast benefit-icon"></i>
+        <div class="benefit-title">Entrega Expressa</div>
+        <div class="benefit-desc">Frete Grátis rastreado diretamente para seu endereço.</div>
+      </div>
+      <div class="benefit-card">
+        <i class="fa-solid fa-pix benefit-icon" style="color:var(--pix-color)"></i>
+        <div class="benefit-title">Pagamento via PIX</div>
+        <div class="benefit-desc">Processamento instantâneo com máxima segurança.</div>
+      </div>
+      <div class="benefit-card">
+        <i class="fa-solid fa-box-open benefit-icon"></i>
+        <div class="benefit-title">Kit Pronto para Montar</div>
+        <div class="benefit-desc">Abra a caixa e monte em menos de 10 minutos com toda a família.</div>
+      </div>
+      <div class="benefit-card">
+        <i class="fa-solid fa-medal benefit-icon"></i>
+        <div class="benefit-title">Garantia de Satisfação</div>
+        <div class="benefit-desc">Produto de alta qualidade com galhos densos e duráveis.</div>
+      </div>
+    </div>
 
-                <!-- Color Selection Options -->
-                <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-2">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                        <i class="fa-solid fa-palette text-indigo-400"></i> Escolha a Cor da Caneta:
-                    </span>
-                    <div class="grid grid-cols-3 gap-3">
-                        <label class="cursor-pointer bg-slate-950 border border-slate-700 hover:border-purple-500 p-2.5 rounded-xl text-center flex items-center justify-center gap-2 transition group">
-                            <input type="radio" name="cor_caneta" value="Roxo" class="accent-purple-500" checked>
-                            <span class="w-3 h-3 rounded-full bg-purple-600 inline-block"></span>
-                            <span class="text-xs font-bold text-slate-200 group-hover:text-white">Roxo</span>
-                        </label>
-						<label class="cursor-pointer bg-slate-950 border border-slate-700 hover:border-blue-500 p-2.5 rounded-xl text-center flex items-center justify-center gap-2 transition group">
-                            <input type="radio" name="cor_caneta" value="Azul" class="accent-blue-500">
-                            <span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span>
-                            <span class="text-xs font-bold text-blue-200 group-hover:text-white">Azul</span>
-						 </label>	
-                        <label class="cursor-pointer bg-slate-950 border border-slate-700 hover:border-pink-500 p-2.5 rounded-xl text-center flex items-center justify-center gap-2 transition group">
-                            <input type="radio" name="cor_caneta" value="Rosa" class="accent-pink-500">
-                            <span class="w-3 h-3 rounded-full bg-pink-500 inline-block"></span>
-                            <span class="text-xs font-bold text-pink-200 group-hover:text-pink">Rosa</span>
-                        </label>
-                        <label class="cursor-pointer bg-slate-950 border border-slate-700 hover:border-yellow-400 p-2.5 rounded-xl text-center flex items-center justify-center gap-2 transition group">
-                            <input type="radio" name="cor_caneta" value="Amarelo" class="accent-yellow-300">
-                            <span class="w-3 h-3 rounded-full bg-yellow-400 inline-block border border-slate-400"></span>
-                            <span class="text-xs font-bold text-yellow-200 group-hover:text-yellow">Amarelo</span>
-                        </label>
-                    </div>
-                </div>
+  </div>
 
-                <!-- Pricing Box -->
-                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-2xl inline-block w-full sm:w-auto">
-                    <div class="text-xs text-slate-400 line-through font-semibold">De R$ 247,00 por apenas:</div>
-                    <div class="flex items-baseline gap-3 my-1">
-                        <span class="text-4xl sm:text-5xl font-extrabold text-green-400">R$ 97,00</span>
-                        <span class="bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-bold px-2.5 py-1 rounded-md">60% OFF</span>
-                    </div>
-                    <div class="text-xs text-slate-300 font-medium mt-1 flex items-center justify-between gap-1.5">
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-indigo-400"></i> Frete Grátis para Toda Região</span>
-                        <span class="text-red-400 font-bold bg-red-950/60 px-2 py-0.5 rounded border border-red-900">Restam 19 kits</span>
-                    </div>
-                </div>
+  <!-- Pop-up de Compras ao Vivo (Notificações) -->
+  <div class="live-popup" id="live-popup">
+    <img src="https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=100&q=80" class="live-popup-img" alt="Árvore" />
+    <div class="live-popup-info">
+      <strong id="popup-name">Mariana Silva (São Paulo)</strong>
+      <span>Acabou de adquirir o <strong>Kit 1,50m por R$ 87,00</strong></span>
+      <div class="live-popup-time"><i class="fa-solid fa-bolt"></i> Compra via PIX confirmada há 12 segundos</div>
+    </div>
+  </div>
 
-                <!-- CTA Button -->
-                <div class="pt-2">
-                    <a href="https://megapromo17.pay.yampi.com.br/r/EZSSTAVOF3" id="comprar" class="pulsing-btn block w-full text-center bg-green-600 hover:bg-green-500 text-white font-extrabold text-lg sm:text-xl py-4 px-8 rounded-2xl shadow-xl transition-all duration-300">
-                        <i class="fa-solid fa-cart-shopping mr-2"></i> QUERO COMPRAR AGORA (R$ 97,00)
-                    </a>
-                    <p class="text-center text-xs text-slate-400 mt-2">🔒 Compra 100% Segura • Satisfação Garantida</p>
-                </div>
+  <footer>
+    <p>© 2026 Promoção de Natal - Todos os direitos reservados.</p>
+    <p>Pagamentos processados com total segurança via PIX.</p>
+  </footer>
 
-                <!-- Quick Badges -->
-                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-800 text-center">
-                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-shield-halved text-indigo-400 text-lg mb-1"></i>
-                        <div class="text-xs font-bold text-slate-200">Segura p/ Crianças</div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-box-open text-indigo-400 text-lg mb-1"></i>
-                        <div class="text-xs font-bold text-slate-200">100m Filamento</div>
-                    </div>
-                    <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                        <i class="fa-solid fa-book text-indigo-400 text-lg mb-1"></i>
-                        <div class="text-xs font-bold text-slate-200">Com Caderno</div>
-                    </div>
-                </div>
+  <script>
+    // Mapeamento dos Links do Yampi
+    const linksYampi = {
+      '60': 'https://megapromo17.pay.yampi.com.br/r/DTD0GKHFEO',
+      '150': 'https://megapromo17.pay.yampi.com.br/r/BIT7JNYD3N',
+      '180': 'https://megapromo17.pay.yampi.com.br/r/J6M6H4HV8I'
+    };
 
-            </div>
+    // Imagens correspondentes aos tamanhos (Troca ao selecionar opção)
+    const imagesYampi = {
+      '60': 'https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=900&q=80',
+      '150': 'https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=900&q=80',
+      '180': 'https://images.unsplash.com/photo-1543589077-47d51996477a?auto=format&fit=crop&w=900&q=80'
+    };
 
-            <!-- Right Column: Product Image -->
-            <div class="relative flex justify-center">
-                <div class="relative bg-slate-900 p-4 rounded-3xl shadow-2xl border border-slate-800 w-full max-w-md">
-                    <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 flex flex-col items-center justify-center text-center p-2 relative group">
-                        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_695031-MLA116386440825_082026-F.webp" alt="Kit Caneta 3D Nic 3D + 100m Filamento + Caderno" class="w-full h-full object-contain rounded-xl transition group-hover:scale-105 duration-500">
-                    </div>
-                    <div class="mt-4 space-y-2">
-                        <div class="flex items-center gap-2 text-sm text-slate-300 font-medium">
-                            <i class="fa-solid fa-circle-check text-green-400"></i> Disponível nas cores: Roxo, Rosa e Branco
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-slate-300 font-medium">
-                            <i class="fa-solid fa-circle-check text-green-400"></i> Acompanha 100 metros de filamento colorido
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-slate-300 font-medium">
-                            <i class="fa-solid fa-circle-check text-green-400"></i> Inclui caderno de moldes e riscos para desenhar
-                        </div>
-                    </div>
-                </div>
-            </div>
+    // Conteúdo detalhado de cada Kit
+    const kitDetails = {
+      '60': {
+        title: 'O que está incluso no Kit 60 cm:',
+        items: [
+          'Árvore 60cm (Compacta de mesa)',
+          '1 Ponteira Estrela Dourada',
+          '12 Bolas Decorativas (4cm)',
+          '1 Pisca-Pisca 50 LEDs',
+          '6 Laços Vermelhos Aveludados',
+          'Base Plástica Inclusa'
+        ]
+      },
+      '150': {
+        title: 'O que está incluso no Kit 1,50 m:',
+        items: [
+          'Árvore 1,50m (300 galhos densos)',
+          '1 Ponteira Estrela Dourada Grande',
+          '24 Bolas Decoradas (6cm)',
+          '1 Pisca-Pisca 100 LEDs (8 Metros)',
+          '12 Laços Vermelhos Aveludados',
+          'Base Tripé de Metal Reforçado'
+        ]
+      },
+      '180': {
+        title: 'O que está incluso no Kit 1,80 m:',
+        items: [
+          'Árvore 1,80m (500 galhos super cheia)',
+          '1 Ponteira Estrela Luxo Dourada',
+          '36 Bolas Decorativas Finas (6cm)',
+          '1 Pisca-Pisca 100 LEDs (10 Metros)',
+          '18 Laços Vermelhos Aveludados',
+          'Base Tripé de Metal Reforçado'
+        ]
+      }
+    };
 
-        </div>
-    </section>
+    // Função de Troca de Imagem da Galeria
+    function changeImage(src, element) {
+      document.getElementById('main-img').src = src;
+      document.querySelectorAll('.thumb-item').forEach(el => el.classList.remove('active'));
+      if(element) element.classList.add('active');
+    }
 
-    <!-- Product Description Section -->
-    <section class="py-16 bg-slate-900 border-y border-slate-800">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-indigo-400 font-bold text-xs uppercase tracking-wider bg-indigo-950 border border-indigo-800/50 px-3 py-1.5 rounded-full">Detalhes da Inovação</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3">Por que escolher o Kit Nic 3D Completo?</h2>
-                <p class="text-slate-400 text-sm mt-2">Tudo o que a criança precisa para começar a criar esculturas tridimensionais fantásticas imediatamente.</p>
-            </div>
+    // Função de Seleção de Tamanho
+    function selectOption(size) {
+      // Atualizar Radios
+      document.querySelectorAll('input[name="tree_size"]').forEach(radio => {
+        radio.checked = (radio.value === size);
+      });
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-5">
-                    <div class="flex gap-4 items-start bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
-                        <div class="bg-indigo-950 border border-indigo-800 text-indigo-400 p-3 rounded-xl flex-shrink-0">
-                            <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">Criação Livre no Ar</h4>
-                            <p class="text-sm text-slate-400 mt-1">O filamento aquece suavemente dentro da caneta Nic 3D e solidifica em segundos, permitindo desenhar esculturas incríveis direto no ar ou sobre moldes.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
-                        <div class="bg-pink-950 border border-pink-800 text-pink-400 p-3 rounded-xl flex-shrink-0">
-                            <i class="fa-solid fa-book-open text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">Caderno de Moldes Incluso</h4>
-                            <p class="text-sm text-slate-400 mt-1">Acompanha caderno com diversos riscos e moldes guiados para facilitar os primeiros passos e garantir horas de diversão criativa.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
-                        <div class="bg-green-950 border border-green-800 text-green-400 p-3 rounded-xl flex-shrink-0">
-                            <i class="fa-solid fa-bolt text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white">100 Metros de Filamento</h4>
-                            <p class="text-sm text-slate-400 mt-1">Um super estoque de filamentos coloridos para que a imaginação não tenha limites e dure por muitos projetos.</p>
-                        </div>
-                    </div>
-                </div>
+      // Atualizar Classes Ativas nos Cards
+      document.querySelectorAll('.option-card').forEach(card => card.classList.remove('active'));
+      document.getElementById(`card-${size}`).classList.add('active');
 
-                <!-- Kit Checklist Box -->
-                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-xl">
-                    <h3 class="font-extrabold text-lg text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-box-archive text-indigo-400"></i> O que vem no Kit Completo:
-                    </h3>
-                    <ul class="space-y-3.5 text-sm text-slate-300">
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-check text-green-400 font-bold"></i> <strong>1x Caneta Nic 3D</strong> (Escolha entre Roxo, Rosa ou Branco)
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-check text-green-400 font-bold"></i> <strong>100 Metros de Filamento</strong> colorido sortido
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-check text-green-400 font-bold"></i> <strong>Caderno Exclusivo</strong> com moldes e riscos
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-check text-green-400 font-bold"></i> <strong>Cabo USB</strong> de alimentação e base de apoio
-                        </li>
-                        <li class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-check text-green-400 font-bold"></i> <strong>Manual de Instruções</strong> ilustrado
-                        </li>
-                    </ul>
-                    <div class="mt-6 bg-red-950/60 border border-red-800/60 text-red-300 p-3 rounded-xl text-center text-xs font-bold">
-                        ⚡ Atenção: Devido à alta procura no Dia das Crianças, restam pouquíssimas unidades!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      // Atualizar Link do Botão CTA
+      const btn = document.getElementById('checkout-link');
+      btn.href = linksYampi[size];
 
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-slate-950">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-indigo-400 font-bold text-xs uppercase tracking-wider bg-indigo-950 border border-indigo-800/50 px-3 py-1.5 rounded-full">Avaliações Verificadas</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3">O que os pais estão dizendo</h2>
-                <p class="text-slate-400 text-sm mt-2">Baseado em milhares de experiências reais de clientes nas principais lojas online.</p>
-            </div>
+      // Atualizar Imagem Principal
+      changeImage(imagesYampi[size], document.querySelectorAll('.thumb-item')[0]);
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Testimonial 1 -->
-                <div class="bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-300 text-sm italic mb-4">
-                            "Comprei a versão rosa para o Dia das Crianças da minha filha e ela simplesmente amou! O caderno com moldes ajudou muito no início e o kit com 100m de filamento rende bastante. Excelente custo-benefício por R$ 97,00!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-                        <div class="w-10 h-10 rounded-full bg-indigo-950 border border-indigo-800 text-indigo-300 font-bold flex items-center justify-center">
-                            MS
-                        </div>
-                        <div>
-                            <div class="font-bold text-sm text-white">Mariana Souza</div>
-                            <div class="text-xs text-slate-400">São Paulo - SP (Compra Verificada)</div>
-                        </div>
-                    </div>
-                </div>
-				<!-- Testimonial 2 -->
-                <div class="bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-300 text-sm italic mb-4">
-                            ""Comprei o Kit Caneta Nic 3D para o Dia das Crianças da minha filha de 12 anos e ela simplesmente se apaixonou! Eu estava em dúvida se nessa idade ela ainda gostaria, mas o caderno de moldes e os 100 metros de filamento trouxeram um desafio criativo incrível para ela. Ela passa horas criando peças tridimensionais lindas no quarto. Excelente qualidade, preço justo por R$ 97,00 e entrega rápida com frete grátis. Recomendo demais!"!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-                        <div class="w-10 h-10 rounded-full bg-indigo-950 border border-indigo-800 text-indigo-300 font-bold flex items-center justify-center">
-                            MS
-                        </div>
-                        <div>
-                            <div class="font-bold text-sm text-white">Patricia Mendes</div>
-                            <div class="text-xs text-slate-400">Campinas- SP (Compra Verificada)</div>
-                        </div>
-                    </div>
-                </div>
+      // Atualizar Lista do Kit
+      const kitInfo = kitDetails[size];
+      document.getElementById('kit-title').innerText = kitInfo.title;
+      
+      const listContainer = document.getElementById('kit-list');
+      listContainer.innerHTML = '';
+      kitInfo.items.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="fa-solid fa-check"></i> ${item}`;
+        listContainer.appendChild(li);
+      });
+    }
 
-                <!-- Testimonial 3 -->
-                <div class="bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-800 flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-amber-400 text-sm mb-3">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-300 text-sm italic mb-4">
-                            "Escolhi o modelo roxo e veio tudo certinho. O kit com 100m de filamento é um diferencial enorme porque não precisamos comprar mais nada separado. Chegou super rápido com frete grátis. Recomendo demais!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-                        <div class="w-10 h-10 rounded-full bg-pink-950 border border-pink-800 text-pink-300 font-bold flex items-center justify-center">
-                            CE
-                        </div>
-                        <div>
-                            <div class="font-bold text-sm text-white">Carlos Eduardo</div>
-                            <div clas
+    // Geolocalização por IP para Frete Grátis Inteligente
+    async function detectUserLocation() {
+      const locationText = document.getElementById('location-text');
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.region) {
+            locationText.innerHTML = `<i class="fa-solid fa-truck-fast"></i> FRETE GRÁTIS GARANTIDO PARA O ESTADO DE <span class="highlight">${data.region.toUpperCase()} (${data.region_code})</span>`;
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('Não foi possível identificar a região exata por IP.');
+      }
+      locationText.innerHTML = `<i class="fa-solid fa-truck-fast"></i> FRETE GRÁTIS GARANTIDO PARA SUA REGIÃO NO BRASIL`;
+    }
+
+    // Cronômetro Regressivo
+    function startTimer() {
+      let time = 11 * 60 + 43; // 11 min e 43 Seg
+      const timerElement = document.getElementById('timer');
+      
+      setInterval(() => {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerElement.textContent = `${minutes}:${seconds}`;
+        if (time > 0) time--;
+      }, 1000);
+    }
+
+    // Pop-ups Dinâmicos de Compras ao Vivo
+    const buyers = [
+      { name: 'Ana Paula Souza', city: 'São Paulo/SP', size: 'Kit 1,50m' },
+      { name: 'Carlos Eduardo', city: 'Curitiba/PR', size: 'Kit 1,80m' },
+      { name: 'Fernanda Lima', city: 'Belo Horizonte/MG', size: 'Kit 1,50m' },
+      { name: 'Roberto Alves', city: 'Porto Alegre/RS', size: 'Kit 60cm' },
+      { name: 'Juliana Mendes', city: 'Rio de Janeiro/RJ', size: 'Kit 1,80m' },
+      { name: 'Camila Rocha', city: 'Campinas/SP', size: 'Kit 1,50m' }
+    ];
+
+    function showLivePopup() {
+      const popup = document.getElementById('live-popup');
+      const nameElem = document.getElementById('popup-name');
+      
+      const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
+      nameElem.innerHTML = `${randomBuyer.name} (${randomBuyer.city})`;
+      popup.querySelector('span').innerHTML = `Acabou de adquirir o <strong>${randomBuyer.size}</strong>`;
+      
+      popup.classList.add('show');
+      
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 4500);
+    }
+
+    function startLivePopups() {
+      setTimeout(showLivePopup, 3000);
+      setInterval(showLivePopup, 12000);
+    }
+
+    // Efeito de Neve
+    function initSnow() {
+      const canvas = document.getElementById('snow-canvas');
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const numFlakes = 35;
+      const flakes = [];
+
+      for (let i = 0; i < numFlakes; i++) {
+        flakes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 3 + 1,
+          speed: Math.random() * 1 + 0.5,
+          wind: Math.random() * 0.5 - 0.25
+        });
+      }
+		function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.beginPath();
+        for (let i = 0; i < numFlakes; i++) {
+          const f = flakes[i];
+          ctx.moveTo(f.x, f.y);
+          ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+        }
+        ctx.fill();
+        move();
+      }
+
+      function move() {
+        for (let i = 0; i < numFlakes; i++) {
+          const f = flakes[i];
+          f.y += f.speed;
+          f.x += f.wind;
+          if (f.y > height) {
+            f.y = -5;
+            f.x = Math.random() * width;
+          }
+        }
+      }
+
+      function animate() {
+        draw();
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      animate();
+    }
+
+    // Inicialização ao carregar página
+    window.onload = function() {
+      detectUserLocation();
+      startTimer();
+      startLivePopups();
+      initSnow();
+    };
+  </script>
+</body>
+</html>
